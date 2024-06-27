@@ -95,3 +95,22 @@ const valueRange = event => {
 rangeElement.addEventListener('input', valueRange);
 
 //- Crea una lista de 4 checkbox con el texto que quieras y un botón, al pulsar el botón deberá decirte cuantos checkbox están marcados y cual es su texto.
+
+const checkButtonElement = document.getElementById('check-button');
+const checkboxInfoElement = document.getElementById('check-info');
+
+const getCheckboxInfo = () => {
+  const inputsElements = document.querySelectorAll('input:checked');
+  let resultText = `están marcados ${inputsElements.length} inputs.`;
+  checkboxInfoElement.textContent = resultText;
+
+  inputsElements.forEach((input, index) => {
+    resultText += input.value;
+    if (index < inputsElements.length - 1) {
+      resultText += ', ';
+    } else {
+      resultText += '.';
+    }
+  });
+};
+checkButtonElement.addEventListener('click', getCheckboxInfo);
